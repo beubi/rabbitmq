@@ -29,6 +29,10 @@ include_recipe 'erlang'
 ## Install the package
 case node['platform_family']
 when 'debian'
+  
+  rabbitmq_killall 'kill running processes' do
+    action :kill
+  end
 
   template '/etc/apt/apt.conf.d/90forceyes' do
     source '90forceyes.erb'
